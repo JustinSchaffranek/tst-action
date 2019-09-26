@@ -20,4 +20,5 @@ jobs:
         ls
         chmod +x ./publish-github.sh
         echo 'run publish script'
+        pwd
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated from GitLab' -f 'Artifacts.zip'
