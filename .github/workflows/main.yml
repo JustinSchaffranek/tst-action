@@ -17,3 +17,6 @@ jobs:
         pwd
         dotnet build -c Release -o ../dist
         dotnet publish -c Release -o ../dist
+        cd ..
+        cd dist
+        ls
