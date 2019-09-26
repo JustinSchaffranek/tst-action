@@ -17,5 +17,6 @@ jobs:
         dotnet publish -c Release -o ../dist
         cd ..
         cd dist && zip -r ./../Artifacts.zip ./* && cd ..
+        ls
         chmod +x ./publish-github.sh
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated from GitLab' -f 'Artifacts.zip'
