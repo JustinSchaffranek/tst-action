@@ -16,4 +16,4 @@ jobs:
         cd tst
         pwd
         dotnet build -c Release -o ../dist
-        dotnet publish -c Release ../dist
+        dotnet publish -c Release -o ../dist
