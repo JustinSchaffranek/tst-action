@@ -3,35 +3,19 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: windows-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: 1step1
-      run: |
-        mkdir dist
-        ls
-        cd tst
-        pwd
-        dotnet build -c Release -o ../dist
-        dotnet publish -c Release -o ../dist
-        cd ..
-        cd dist
-        ls
 
   publish:
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: deploy
+    - name: build/deploy
       run: |
-        pwd
-        ls
         deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
+        mkdir dist
+        cd tst
+        dotnet build -c Release -o ../dist
+        dotnet publish -c Release -o ../dist
+        cd ..
         cd dist && zip -r ./../Artifacts.zip ./* && cd ..
         chmod +x ./publish-github.sh
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated from GitLab' -f 'Artifacts.zip'
-
