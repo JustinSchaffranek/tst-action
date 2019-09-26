@@ -15,15 +15,3 @@ jobs:
         cd tst
         dotnet build -c Release -o ../dist
         dotnet publish -c Release ../dist
-
-  test2:
-
-    runs-on: windows-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: 2step1
-      run: |
-        pwd
-        cd tst
-        dotnet build
