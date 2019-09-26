@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  test1:
+  build:
 
     runs-on: windows-latest
     
@@ -20,3 +20,19 @@ jobs:
         cd ..
         cd dist
         ls
+
+  publish:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: deploy
+      run: |
+        pwd
+        ls
+        deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
+        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
+        chmod +x ./publish-github.sh
+        exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated from GitLab' -f 'Artifacts.zip'
+
