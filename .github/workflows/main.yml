@@ -5,6 +5,14 @@ on: [push]
 jobs:
 
   publish:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: testGit
+      run: |
+        git clone https://github.com/glueckkanja/m365-workplacecloudstorage.git
+        
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
