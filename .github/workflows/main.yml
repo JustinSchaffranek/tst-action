@@ -10,7 +10,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: testGit
       run: |
-        git clone https://github.com/glueckkanja/m365-workplacecloudstorage.git
+        git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
+        ls
         
   publish:
     runs-on: ubuntu-latest
