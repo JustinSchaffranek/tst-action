@@ -12,6 +12,19 @@ jobs:
         git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
         ls
         
+  testBuild:
+    runs-on: windows-latest
+    steps:
+    - name: testbuild
+      run: |
+        mkdir dist
+        cd tst
+        dotnet build -c Release -o ../dist
+        dotnet publish -c Release -o ../dist
+        cd ..
+        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
+        ls
+        
   publish:
     runs-on: ubuntu-latest
     steps:
