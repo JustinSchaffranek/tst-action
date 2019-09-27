@@ -15,7 +15,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
     - name: build/deploy
       run: |
         deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
