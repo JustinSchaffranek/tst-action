@@ -11,6 +11,7 @@ jobs:
       run: |
         git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
         ls
+        write-host ${{ github.head_ref }}
         
   testBuild:
     runs-on: windows-latest
