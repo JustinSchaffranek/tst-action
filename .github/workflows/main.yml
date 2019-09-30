@@ -7,40 +7,9 @@ jobs:
   testGit:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: testGit
       run: |
-        git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
         ls
         echo ${{ github.head_ref }}
-        
-  testBuild:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: testbuild
-      run: |
-        mkdir dist
-        cd tst
-        dotnet build -c Release -o ../dist
-        dotnet publish -c Release -o ../dist
-        cd ..
-        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
-        ls
-        
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-    - name: build/deploy
-      run: |
-        deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
-        mkdir dist
-        cd tst
-        dotnet build -c Release -o ../dist
-        dotnet publish -c Release -o ../dist
-        cd ..
-        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
-        ls
-        chmod +x ./publish-github.sh
-        echo 'run publish script'
-        pwd
-        exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated from GitLab' -f 'Artifacts.zip'
+     
