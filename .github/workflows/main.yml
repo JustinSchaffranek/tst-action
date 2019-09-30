@@ -7,7 +7,6 @@ jobs:
   testGit:
     runs-on: ubuntu-latest
     steps:
-    - if: ${{ github.head_ref }} = "master"
     - name: testGit
       run: |
         git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
