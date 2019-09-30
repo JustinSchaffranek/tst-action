@@ -11,5 +11,7 @@ jobs:
     - name: testGit
       run: |
         ls
+        echo ${{ github.ref }}
+        echo ${{ github.event_name }}
         echo ${{ github.head_ref }}
-     
+        echo ${{ github.base_ref }}
