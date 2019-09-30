@@ -7,10 +7,10 @@ jobs:
   testGit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
     - name: testGit
       run: |
-        ls
+        git clone https://github.com/JustinSchaffranek/tst-action.git
+        cd tst-action
         echo ${{ github.ref }}
         echo ${{ github.event_name }}
         echo ${{ github.head_ref }}
