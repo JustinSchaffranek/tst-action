@@ -5,13 +5,14 @@ on: [push]
 jobs:
 
   testGit:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
+    - if: ${{ github.head_ref }} = "master"
     - name: testGit
       run: |
         git clone https://gkgithubactions:${{ secrets.GITLAB_PW }}@gitlab.glueckkanja.net/gk-scepman/scepman.git
         ls
-        write-host ${{ github.head_ref }}
+        echo ${{ github.head_ref }}
         
   testBuild:
     runs-on: windows-latest
