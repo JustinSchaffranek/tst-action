@@ -8,14 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: xyz
     - run: |
         mkdir dist
-        cd tst
-        dotnet publish -c Release -o ../dist
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist
+
+    - uses: docker://angular/ngcontainer
+    - run: |
+        pwd
+        ls
+        cd tst/frontend
+        npm install
+        ng build
   
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
-    - name: xyzabc
     - run: |
         deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
         cd dist && zip -r ./../Artifacts.zip ./* && cd ..
@@ -26,7 +32,6 @@ jobs:
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated with Github Actions' -f 'Artifacts.zip'
         
     - uses: docker://microsoft/dotnet:2.2-sdk
-    - name: xyzabcdef
     - run: |
         pwd
         ls
