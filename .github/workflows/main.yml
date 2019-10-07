@@ -13,7 +13,9 @@ jobs:
         cd tst/backend
         dotnet publish -c Release -o ../../dist
 
-    - uses: docker://angular/ngcontainer
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.8
     - run: |
         pwd
         ls
