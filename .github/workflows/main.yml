@@ -20,12 +20,19 @@ jobs:
         mkdir dist
         cd tst
         dotnet publish -c Release -o ../dist
-    
-    - uses: docker://microsoft/dotnet:2.2-sdk
-    - run: |
-        pwd
-        ls
+  
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
+    - run: |
+        ls
+        cd dist
+        ls
+        cd ..
+        deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
+        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
+        chmod +x ./publish-github.sh
+        exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated with Github Actions' -f 'Artifacts.zip'
+        
+    - uses: docker://microsoft/dotnet:2.2-sdk
     - run: |
         pwd
         ls
