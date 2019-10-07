@@ -7,11 +7,7 @@ jobs:
   testGit:
     runs-on: ubuntu-latest
     steps:
+    - uses: docker://microsoft/dotnet:2.2-sdk
     - name: testGit
       run: |
-        git clone https://github.com/JustinSchaffranek/tst-action.git
-        cd tst-action
-        echo ${{ github.ref }}
-        echo ${{ github.event_name }}
-        echo ${{ github.head_ref }}
-        echo ${{ github.base_ref }}
+        pwd
