@@ -13,17 +13,12 @@ jobs:
         mkdir dist
         cd tst/backend
         dotnet publish -c Release -o ../../dist
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.8
+    - uses: docker://angular/ngcontainer
     - name: navigate to source code
       run: cd tst/frontend
     - name: Install dependencies
       run: |
         cd tst/frontend
-        echo "Files: "
-        ls
-        echo " install: "
         npm install
     - name: Lint
       run: |
