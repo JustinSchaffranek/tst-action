@@ -19,9 +19,18 @@ jobs:
     - name: navigate to source code
       run: cd tst/frontend
     - name: Install dependencies
-      run: npm install
+      run: |
+        pwd
+        echo "Files: "
+        ls
+        echo " install: "
+        npm install
     - name: Lint
-      run: npm run lint
+      run: |
+        echo "Files: "
+        ls
+        echo " lint: "
+        npm run lint
     - name: Build
       run: ng build
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
