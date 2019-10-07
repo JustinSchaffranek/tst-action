@@ -4,10 +4,28 @@ on: [push]
 
 jobs:
 
-  testGit:
+  testDocker:
     runs-on: ubuntu-latest
     steps:
     - uses: docker://microsoft/dotnet:2.2-sdk
-    - name: testGit
+    - name: list all directories and files
       run: |
         ls
+
+  testComplete:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: do all
+    - run: |
+        mkdir dist
+        cd tst
+        dotnet publish -c Release -o ../dist
+    
+    - uses: docker://microsoft/dotnet:2.2-sdk
+    - run: |
+        pwd
+        ls
+    - uses: docker://devorbitus/ubuntu-bash-jq-curl
+    - run: |
+        pwd ls
