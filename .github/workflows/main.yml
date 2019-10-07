@@ -4,14 +4,6 @@ on: [push]
 
 jobs:
 
-  testDocker:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: docker://microsoft/dotnet:2.2-sdk
-    - name: list all directories and files
-      run: |
-        ls
-
   testComplete:
     runs-on: ubuntu-latest
     steps:
@@ -23,13 +15,12 @@ jobs:
   
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
     - run: |
-        ls
-        cd dist
-        ls
-        cd ..
         deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
         cd dist && zip -r ./../Artifacts.zip ./* && cd ..
+        ls
+        echo '>chmod<'
         chmod +x ./publish-github.sh
+        echo '>publish script<'
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated with Github Actions' -f 'Artifacts.zip'
         
     - uses: docker://microsoft/dotnet:2.2-sdk
