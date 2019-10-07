@@ -20,19 +20,19 @@ jobs:
       run: cd tst/frontend
     - name: Install dependencies
       run: |
-        pwd
+        cd tst/frontend
         echo "Files: "
         ls
         echo " install: "
         npm install
     - name: Lint
       run: |
-        echo "Files: "
-        ls
-        echo " lint: "
+        cd tst/frontend
         npm run lint
     - name: Build
-      run: ng build
+      run: |
+        cd tst/frontend
+        ng build
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
     - name: deploy
       run: |
