@@ -16,12 +16,14 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.8
-    - run: |
-        pwd
-        ls
-        cd tst/frontend
-        npm install
-        ng build
+    - name: navigate to source code
+      run: cd tst/frontend
+    - name: Install dependencies
+      run: npm install
+    - name: Lint
+      run: npm run lint
+    - name: Build
+    - run: ng build
   
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
     - run: |
