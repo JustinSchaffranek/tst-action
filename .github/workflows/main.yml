@@ -7,7 +7,9 @@ jobs:
   testGit:
     runs-on: ubuntu-latest
     steps:
-    - uses: docker://microsoft/dotnet:2.2-sdk
+    - uses: |
+        actions/checkout@v1
+        docker://microsoft/dotnet:2.2-sdk
     - name: testGit
       run: |
         pwd
