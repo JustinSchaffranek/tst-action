@@ -19,10 +19,22 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: |
+        mkdir dist
         cd tst/frontend
         npm install
+        write-host ">>>before: "
+        ls
         npm install -g @angular/cli
         ng build --prod --progress false:  
+        write-host ">>>after: "
+        ls
+        cd ../backend
+        dotnet publish -c Release -o ../../dist
+        cd ../../dist
+        write-host ">>>Artifacts: "
+        ls
+        
+        
 
   buildAndDeploy3:
     runs-on: windows-latest
