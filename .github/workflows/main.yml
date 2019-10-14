@@ -3,6 +3,16 @@ name: CI
 on: [push]
 
 jobs:
+  buildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: docker://angular/ngcontainer
+    - run: |
+        cd tst/frontend
+        npm install
+        npm install -g @angular/cli
+        ng build --prod --progress false:
 
   testComplete:
     runs-on: windows-latest
