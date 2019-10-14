@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  buildAndDeploy:
+  buildAndDeploy1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -13,8 +13,8 @@ jobs:
         npm install
         npm install -g @angular/cli
         ng build --prod --progress false:
-
-  testComplete:
+  
+  buildAndDeploy2:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
@@ -23,17 +23,26 @@ jobs:
         cd tst/frontend
         npm install
         npm install -g @angular/cli
-        ng build
+        ng build --prod --progress false:  
+
+  buildAndDeploy3:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: docker://justinschaffranek/ngbuild
+    - run: |
+        cd tst/frontend
+        npm install
+        ng build --prod --progress false: 
     
-    - name: dotnet
-      run: |
+    - uses: docker://microsoft/dotnet:2.2-sdk
+    - run: |
         mkdir dist
         cd tst/backend
         dotnet publish -c Release -o ../../dist
     
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
-    - name: deploy
-      run: |
+    - run: |
         deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
         cd dist && zip -r ./../Artifacts.zip ./* && cd ..
         ls
