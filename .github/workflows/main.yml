@@ -7,8 +7,8 @@ jobs:
   testComplete:
     runs-on: windows-latest
     steps:
+    - uses: docker://justinschaffranek/ngbuild
     - uses: actions/checkout@v1
-    - uses: docker://justinschaffranek/ngbuild:v1.14.10.2019
     - name: navigate to source code
       run: cd tst/frontend
     - name: Install dependencies
