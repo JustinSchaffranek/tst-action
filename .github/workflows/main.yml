@@ -18,7 +18,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: docker://angular/ngcontainer
     - run: |
         cd tst/frontend
         npm install
