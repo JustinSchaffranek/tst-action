@@ -8,11 +8,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: dotnet
-      run: |
-        mkdir dist
-        cd tst/backend
-        dotnet publish -c Release -o ../../dist
     - uses: docker://justinschaffranek/ngbuild:latest
     - name: navigate to source code
       run: cd tst/frontend
@@ -24,6 +19,13 @@ jobs:
       run: |
         cd tst/frontend
         ng build
+    
+    - name: dotnet
+      run: |
+        mkdir dist
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist
+    
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
     - name: deploy
       run: |
