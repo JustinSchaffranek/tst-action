@@ -12,7 +12,7 @@ jobs:
         cd tst/frontend
         npm install
         npm install -g @angular/cli
-        ng build --prod --progress false:
+        ng build --prod --progress true:
   
   buildAndDeploy2:
     runs-on: windows-latest
@@ -25,7 +25,7 @@ jobs:
         write-host ">>>before: "
         ls
         npm install -g @angular/cli
-        ng build --prod --progress false:  
+        ng build --prod --progress true:  
         write-host ">>>after: "
         ls
         cd ../backend
