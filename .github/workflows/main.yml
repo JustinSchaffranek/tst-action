@@ -13,7 +13,7 @@ jobs:
         mkdir dist
         cd tst/backend
         dotnet publish -c Release -o ../../dist
-    - uses: docker://justinschaffranek/ngbuild
+    - uses: docker://justinschaffranek/ngbuild:latest
     - name: navigate to source code
       run: cd tst/frontend
     - name: Install dependencies
