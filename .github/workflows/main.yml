@@ -3,18 +3,8 @@ name: CI
 on: [push]
 
 jobs:
-  buildAndDeploy1:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: docker://angular/ngcontainer
-    - run: |
-        cd tst/frontend
-        npm install
-        npm install -g @angular/cli
-        ng build --prod --progress true:
   
-  buildAndDeploy2:
+  buildAndDeploy:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
@@ -33,24 +23,6 @@ jobs:
         cd ../../dist
         write-host ">>>Artifacts: "
         ls
-        
-        
-
-  buildAndDeploy3:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v1
-    - uses: docker://justinschaffranek/ngbuild
-    - run: |
-        cd tst/frontend
-        npm install
-        ng build --prod --progress false: 
-    
-    - uses: docker://microsoft/dotnet:2.2-sdk
-    - run: |
-        mkdir dist
-        cd tst/backend
-        dotnet publish -c Release -o ../../dist
     
     - uses: docker://devorbitus/ubuntu-bash-jq-curl
     - run: |
@@ -61,8 +33,3 @@ jobs:
         chmod +x ./publish-github.sh
         echo '>publish script<'
         exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated with Github Actions' -f 'Artifacts.zip'
-        
-    - uses: docker://microsoft/dotnet:2.2-sdk
-    - run: |
-        pwd
-        ls
