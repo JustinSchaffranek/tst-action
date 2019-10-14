@@ -7,17 +7,11 @@ jobs:
   testComplete:
     runs-on: windows-latest
     steps:
-    - uses: docker://angular/ngcontainer
     - uses: actions/checkout@v1
-    - name: navigate to source code
-      run: cd tst/frontend
-    - name: Install dependencies
-      run: |
+    - uses: docker://angular/ngcontainer
+    - run: |
         cd tst/frontend
         npm install
-    - name: Build
-      run: |
-        cd tst/frontend
         npm install -g @angular/cli
         ng build
     
