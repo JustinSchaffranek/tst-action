@@ -23,4 +23,13 @@ jobs:
         cd dist
         pwd
         ls
+    - uses: docker://angular/ngcontainer  
+    - run: |
+        cd tst/frontend
+        ls
+        npm install
+        ng build --prod --progress true:  
+        ls
+        
+        
         
