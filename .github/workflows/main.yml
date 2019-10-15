@@ -3,7 +3,14 @@ name: CI
 on: [push]
 
 jobs:
-  
+  output:
+    runs-on: windows-latest
+    steps:
+      - run: |
+          echo "echo Test"
+          write-host "Write-Host Test"
+          write-output "Write-Output Test"
+          
   buildAndDeploy:
     runs-on: windows-latest
     steps:
