@@ -12,19 +12,15 @@ jobs:
         mkdir dist
         cd tst/frontend
         npm install
-        ls
         npm install -g @angular/cli
         ng build --prod --progress true:  
-        ls
         cd ../backend
         dotnet publish -c Release -o ../../dist
         cd ../../dist
-        ls
-        pwd
+        mkdir dummy
         
     - run: |
-        pwd
-        ls
         cd dist
+        pwd
         ls
         
