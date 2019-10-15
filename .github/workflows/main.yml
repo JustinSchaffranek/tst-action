@@ -3,11 +3,6 @@ name: CI
 on: [push]
 
 jobs:
-  output:
-    runs-on: windows-latest
-    steps:
-      - run: |
-          write-output "Write-Output Test"
           
   buildAndDeploy:
     runs-on: windows-latest
@@ -17,17 +12,13 @@ jobs:
         mkdir dist
         cd tst/frontend
         npm install
-        write-host ">>>before: "
         ls
         npm install -g @angular/cli
         ng build --prod --progress true:  
-        write-host ">>>after: "
         ls
         cd ../backend
         dotnet publish -c Release -o ../../dist
         cd ../../dist
-        write-host ">>>Artifacts: "
         ls
-        pwd
-        write-host ">>>Finished!!!"        
+        pwd    
         
