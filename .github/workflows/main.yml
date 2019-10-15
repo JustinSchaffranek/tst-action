@@ -25,5 +25,6 @@ jobs:
     - run: |
         pwd
         ls
-  
+        cd dist
+        ls
         
