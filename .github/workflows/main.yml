@@ -23,33 +23,6 @@ jobs:
         cd ../../dist
         write-host ">>>Artifacts: "
         ls
-    
-    - uses: docker://devorbitus/ubuntu-bash-jq-curl
-    - run: |
-        deployAccount=$(echo -n ${{ secrets.ROBOT_PW }} | base64)
-        cd dist && zip -r ./../Artifacts.zip ./* && cd ..
-        ls
-        echo '>chmod<'
-        chmod +x ./publish-github.sh
-        echo '>publish script<'
-        exec ./publish-github.sh -a $deployAccount -o 'JustinSchaffranek' -r 'tst-publish' -d 'dist' -m 'Updated with Github Actions' -f 'Artifacts.zip'
-  
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    # checkout the repo
-    - uses: actions/checkout@master
-    
-    # install dependencies, build, and test
-    - name: npm install, build, and test
-      run: |
-        cd tst/backend
-        npm install
-        npm run build --if-present
-        npm run test --if-present
+        pwd
+        write-host ">>>Finished!!!"        
         
-    # deploy web app using publish profile credentials
-    - uses: azure/appservice-actions/webapp@master
-      with: 
-        app-name: tst-action
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
