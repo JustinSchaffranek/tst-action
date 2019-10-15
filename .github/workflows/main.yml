@@ -20,5 +20,10 @@ jobs:
         dotnet publish -c Release -o ../../dist
         cd ../../dist
         ls
-        pwd    
+        pwd
+        
+    - run: |
+        pwd
+        ls
+  
         
