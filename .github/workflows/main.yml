@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: docker://justinschaffranek/ngbuild  
+    - run: |
+        cd tst/frontend
+        ls
+        npm install
+        ng build --prod --progress true:  
+        ls                
     - run: |
         mkdir dist
         cd tst/frontend
@@ -22,13 +29,6 @@ jobs:
     - run: |
         cd dist
         pwd
-        ls
-    - uses: docker://justinschaffranek/ngbuild  
-    - run: |
-        cd tst/frontend
-        ls
-        npm install
-        ng build --prod --progress true:  
         ls
         
         
