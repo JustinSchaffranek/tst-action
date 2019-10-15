@@ -23,7 +23,7 @@ jobs:
         cd dist
         pwd
         ls
-    - uses: docker://angular/ngcontainer  
+    - uses: docker://justinschaffranek/ngbuild  
     - run: |
         cd tst/frontend
         ls
