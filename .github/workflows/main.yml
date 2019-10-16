@@ -12,7 +12,7 @@ jobs:
         ls
         mkdir dist
         pwd
-        docker run -it -v ./dist/:/dist justinschaffranek/ngbuild
+        winpty docker run -it -v ./dist/:/dist justinschaffranek/ngbuild
         pwd
         ls
 
