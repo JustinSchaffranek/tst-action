@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   docker:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - run: |
@@ -14,6 +14,7 @@ jobs:
         pwd
         docker pull justinschaffranek/ngbuild
         docker run -it justinschaffranek/ngbuild
+        whoami
         pwd
         ls
 
