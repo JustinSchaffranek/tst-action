@@ -37,3 +37,12 @@ jobs:
         cd tst/frontend/dist/frontend
         pwd
         ls
+    - name: move artifacts
+      run: |
+        cd tst/frontend/dist/frontend
+        cp * ../../../../dist
+    - name: check move
+      run: |
+        cd dist
+        pwd
+        ls
