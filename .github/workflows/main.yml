@@ -18,7 +18,7 @@ jobs:
         ls
         npm install -g angular-cli
         npm install
-        ng build --prod --progress true:
+        ng build --prod --progress false:
         ls
         
   buildAndDeploy:
