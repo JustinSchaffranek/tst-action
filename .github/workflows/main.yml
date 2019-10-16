@@ -18,10 +18,12 @@ jobs:
         npm install -g angular-cli
         ng version
         npm install
-        ng build --prod --progress false:
+        ng build --outputPath=../../dist
+        cd ../../dist
         ls
+        
+    - run: |
         pwd
-        cd dist
         ls
         
   buildAndDeploy:
