@@ -39,6 +39,7 @@ jobs:
         ls
     - name: move artifacts
       run: |
+        mkdir dist
         cd tst/frontend/dist/frontend
         cp * ../../../../dist
     - name: check move
