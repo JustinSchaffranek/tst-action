@@ -30,8 +30,7 @@ jobs:
         npm run build
     - name: move artifacts
       run: |
-        cd tst/frontend/dist/frontend
-        cp * ../../../../dist
+        robocopy tst/frontend/dist/frontend dist
     - name: check move
       run: |
         cd dist
