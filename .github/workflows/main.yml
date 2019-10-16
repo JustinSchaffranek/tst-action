@@ -12,18 +12,20 @@ jobs:
       with:
         node-version: '11.13'
         registry-url: 'https://registry.npmjs.org'
+    - run: npm install -g angular-cli
+        
     - run: |
         mkdir dist
         cd tst/frontend
-        npm install -g angular-cli
-        ng version
         npm install
         ng build --outputPath=../../dist
         
     - run: |
+        ng version
+    - run: |
         cd dist
         ls
-        
+                
   buildAndDeploy:
     runs-on: ubuntu-latest
     needs: [actions]
