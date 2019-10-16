@@ -17,29 +17,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build
+    - name: add dist directory
+      run: mkdir dist
+    - name: build frontend
       run: |
         cd tst/frontend
         npm install
         npm run build
-    - name: check
+    - name: build backend
       run: |
-        cd tst/frontend
-        pwd
-        ls
-    - name: look inside dist
-      run: |
-        cd tst/frontend/dist
-        pwd
-        ls
-    - name: look inside dist frontend
-      run: |
-        cd tst/frontend/dist/frontend
-        pwd
-        ls
+        cd tst/backend
+        publish -c Release -o ../../dist
     - name: move artifacts
       run: |
-        mkdir dist
         cd tst/frontend/dist/frontend
         cp * ../../../../dist
     - name: check move
