@@ -4,20 +4,23 @@ on: [push]
 
 jobs:
 
-  docker:
-    runs-on: ubuntu-latest
+  actions:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '11.13'
+        registry-url: 'https://registry.npmjs.org'
     - run: |
         ls
         mkdir dist
-        pwd
-        docker pull justinschaffranek/ngbuild
-        docker run -it justinschaffranek/ngbuild
-        whoami
-        pwd
+        cd tst/frontend
         ls
-
+        npm install -g @angular-cli
+        ng build --prod --progress true:
+        ls
+        
   buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
