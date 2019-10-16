@@ -12,7 +12,8 @@ jobs:
         ls
         mkdir dist
         pwd
-        winpty docker run -it justinschaffranek/ngbuild
+        docker pull justinschaffranek/ngbuild
+        docker run -it justinschaffranek/ngbuild
         pwd
         ls
 
