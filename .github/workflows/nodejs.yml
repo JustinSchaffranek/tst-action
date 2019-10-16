@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [11.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -21,9 +21,14 @@ jobs:
       run: |
         cd tst/frontend
         npm install
-        npm run build 
+        npm run build
+    - name: check
+      run: |
+        cd tst/frontend
+        pwd
         ls
-        cd dist
+    - name: look inside dist
+      run: |
+        cd tst/frontend/dist
+        pwd
         ls
-      env:
-        CI: true
