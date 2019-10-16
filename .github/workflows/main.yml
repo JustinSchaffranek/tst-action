@@ -16,14 +16,14 @@ jobs:
         
     - run: |
         mkdir dist
-        cd tst/frontend
+        cd ./tst/frontend/
         npm install
         ng build --outputPath=../../dist
         
     - run: |
         ng version
     - run: |
-        cd dist
+        cd ./dist/
         ls
                 
   buildAndDeploy:
