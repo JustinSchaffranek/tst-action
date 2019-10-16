@@ -19,15 +19,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: add dist directory
       run: mkdir dist
+    - name: build backend
+      run: |
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist    
     - name: build frontend
       run: |
         cd tst/frontend
         npm install
         npm run build
-    - name: build backend
-      run: |
-        cd tst/backend
-        publish -c Release -o ../../dist
     - name: move artifacts
       run: |
         cd tst/frontend/dist/frontend
