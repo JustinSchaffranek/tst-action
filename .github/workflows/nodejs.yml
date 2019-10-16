@@ -32,3 +32,8 @@ jobs:
         cd tst/frontend/dist
         pwd
         ls
+    - name: look inside dist frontend
+      run: |
+        cd tst/frontend/dist/frontend
+        pwd
+        ls
