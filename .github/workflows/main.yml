@@ -5,7 +5,7 @@ on: [push]
 jobs:
 
   actions:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
@@ -20,8 +20,7 @@ jobs:
         npm install
         ng build --outputPath=../../dist
         
-    - run: |
-        ng version
+    - run: ng version
     - run: |
         cd ./dist/
         ls
