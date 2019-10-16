@@ -13,7 +13,6 @@ jobs:
         node-version: '11.13'
         registry-url: 'https://registry.npmjs.org'
     - run: |
-        ls
         mkdir dist
         cd tst/frontend
         ls
@@ -23,6 +22,7 @@ jobs:
         
   buildAndDeploy:
     runs-on: ubuntu-latest
+    needs: [actions]
     steps:
     - uses: actions/checkout@v1
     - uses: docker://justinschaffranek/ngbuild  
@@ -45,6 +45,7 @@ jobs:
      
   buildAndDeployStaging:
     runs-on: windows-latest
+    needs: [actions]
     steps:
     - uses: actions/checkout@v1
     - run: |
