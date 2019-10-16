@@ -3,7 +3,19 @@ name: CI
 on: [push]
 
 jobs:
-          
+
+  docker:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+        ls
+        mkdir dist
+        pwd
+        docker run -it -v ./dist/:/dist justinschaffranek/ngbuild
+        pwd
+        ls
+
   buildAndDeploy:
     runs-on: ubuntu-latest
     steps:
