@@ -21,6 +21,9 @@ jobs:
       run: |
         cd tst/frontend
         npm install
-        npm run build --if-present
+        npm run build 
+        ls
+        cd dist
+        ls
       env:
         CI: true
