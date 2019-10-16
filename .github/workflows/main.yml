@@ -17,7 +17,7 @@ jobs:
         mkdir dist
         cd tst/frontend
         ls
-        npm install -g @angular-cli
+        npm install -g angular-cli
         ng build --prod --progress true:
         ls
         
