@@ -23,6 +23,7 @@ jobs:
       run: |
         cd tst/frontend
         echo "--> run npm build"
+        npm install
         npm run build
         echo "--> output"
         echo "--> ls: look for dist"
