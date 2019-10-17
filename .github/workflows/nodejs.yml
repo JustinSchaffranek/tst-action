@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
@@ -39,9 +39,10 @@ jobs:
         cd dist
         ls
         cd frontend
+        pwd
         ls        
     - name: move artifacts
-      run: cp ./tst/frontend/dist/frontend/* ./dist
+      run: echo "cp ./tst/frontend/dist/frontend/* ./dist"
     - name: check move
       run: |
         cd dist
