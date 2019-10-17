@@ -56,14 +56,20 @@ jobs:
     needs: [buildFrontend, buildBackend]
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/download-artifact@master
       with:
         name: frontend
-    - run: ls
+    - run: |
+        ls
+        cd frontend
+        ls
     - uses: actions/download-artifact@master
       with:
         name: backend
-    - run: ls
+    - run: |
+        ls
+        cd backend
+        ls
     - name: deploy to azure
       run: |
         mkdir test
