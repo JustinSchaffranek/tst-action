@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -29,9 +29,6 @@ jobs:
         ls
         npm install
         npm run build
-        ls
-        cd dist
-        ls
     - name: check paths
       run: |
         pwd
@@ -44,7 +41,7 @@ jobs:
         cd frontend
         ls        
     - name: move artifacts
-      run: move ./tst/frontend/dist/frontend ./dist
+      run: cp ./tst/frontend/dist/frontend/* ./dist
     - name: check move
       run: |
         cd dist
