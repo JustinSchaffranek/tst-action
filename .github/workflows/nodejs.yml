@@ -26,8 +26,12 @@ jobs:
     - name: build frontend
       run: |
         cd tst/frontend
+        ls
         npm install
         npm run build
+        ls
+        cd dist
+        ls
     - name: check paths
       run: |
         pwd
