@@ -24,7 +24,13 @@ jobs:
         cd tst/frontend
         npm install
         npm install -g @angular/cli
-        ng build
+        ng build --prod --outputPath=./../../dist
+        pwd
+        cd ../../
+        ls
+        cd dist
+        pwd
+        ls
     - name: check paths
       run: |
         cd dist
