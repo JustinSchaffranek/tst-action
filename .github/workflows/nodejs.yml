@@ -29,8 +29,7 @@ jobs:
         npm install
         npm run build
     - name: move artifacts
-      run: |
-        robocopy tst/frontend/dist/frontend dist
+      run: move ./tst/frontend/dist/frontend ./dist
     - name: check move
       run: |
         cd dist
