@@ -65,13 +65,17 @@ jobs:
     - name: prepare dist folder    
       run: |
         ls
+        echo "--> List Frontend:"
+        ls ./frontend/
+        echo "--> List Backend:"
+        ls ./backend/
         mkdir deploy
         move ./backend/* ./deploy
         echo "--> move backend:"
-        ls ./dist
+        ls ./deploy
         echo "--> move frontend:"
         move ./frontend/* ./deploy
-        ls ./dist
+        ls ./deploy
       
     - name: deploy to azure
       run: |
