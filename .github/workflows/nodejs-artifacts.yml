@@ -23,7 +23,7 @@ jobs:
         npm run build     
     - name: check paths
       run: |
-        cd dist
+        cd tst/frontend/dist
         pwd
         ls
     - uses: actions/upload-artifact@master
@@ -49,4 +49,4 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: backend
-        path: dist/backend
+        path: dist
