@@ -1,16 +1,38 @@
-name: with Artifacts
+name: Build and Deploy with Artifacts upload/download
 
 on: [push]
 
 jobs:
-  buildBackend:
-
-    runs-on: windows-latest
+  buildFrontend:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [11.x]
 
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: build frontend
+      run: |
+        cd tst/frontend
+        npm install
+        npm run build     
+    - name: check paths
+      run: |
+        cd dist
+        pwd
+        ls
+    - uses: actions/upload-artifact@master
+      with:
+        name: frontend
+        path: tst/frontend/dist
+  
+  buildBackend:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
     - name: add dist directory
@@ -27,4 +49,4 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: backend
-        path: dist
+        path: dist/backend
