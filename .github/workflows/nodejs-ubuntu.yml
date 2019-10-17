@@ -23,7 +23,7 @@ jobs:
       run: |
         cd tst/frontend
         npm install
-        ng build --prod
+        npm run build
     - name: build backend
       run: |
         cd tst/backend
