@@ -69,6 +69,8 @@ jobs:
         mkdir deploy
         echo "--> List root:"
         ls
+        echo "--> List Artifacts:"
+        ls ./Artifacts/
         echo "--> List Frontend:"
         ls ./Artifacts/frontend/
         echo "--> List Backend:"
