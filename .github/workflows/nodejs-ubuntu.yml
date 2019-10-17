@@ -1,0 +1,52 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [11.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: add dist directory
+      run: mkdir dist  
+    - name: build frontend
+      run: |
+        cd tst/frontend
+        npm install
+        npm run build
+    - name: build backend
+      run: |
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist        
+    - name: check paths
+      run: |
+        cd tst/frontend/
+        echo "--> tst/frontend"
+        pwd
+        ls
+        cd dist
+        echo "--> tst/frontend/dist"
+        pwd
+        ls    
+    - name: move artifacts
+      run: echo "cp ./tst/frontend/dist/frontend/* ./dist"
+    - name: check move
+      run: |
+        cd dist
+        pwd
+        ls
+    - name: deploy to azure
+      run: |
+        dotnet tool install --global azzipgo --version 0.3.4
+        azzipgo
+        azzipgo deploy-in-place -d dist/ -u dcc08599-210c-4495-94d0-dfeb1a8d1d88 -p -go0GxaxPH-qsv2@sSeDKxiQqPwt_B34 -t gksullust.com -s c23fb836-26ae-44c7-ba0b-c173ceaeb6e8 -g tst-ghactions-weu-rg-0 --site testghaction --target-slot production
