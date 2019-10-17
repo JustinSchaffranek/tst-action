@@ -22,8 +22,7 @@ jobs:
     - name: build frontend
       run: |
         cd tst/frontend
-        npm install
-        npm install -g @angular/cli
+        echo "--> run npm build"
         npm run build
         echo "--> output"
         echo "--> ls: look for dist"
