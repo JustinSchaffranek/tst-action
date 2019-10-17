@@ -22,23 +22,17 @@ jobs:
     - name: build frontend
       run: |
         cd tst/frontend
-        echo "--> run npm build"
         npm install
-        npm run build
+        ng build --prod
     - name: build backend
       run: |
         cd tst/backend
         dotnet publish -c Release -o ../../dist        
     - name: check paths
       run: |
-        cd tst/frontend/
-        echo "--> tst/frontend"
+        cd dist
         pwd
         ls
-        cd dist
-        echo "--> tst/frontend/dist"
-        pwd
-        ls    
     - name: move artifacts
       run: echo "cp ./tst/frontend/dist/frontend/* ./dist"
     - name: check move
