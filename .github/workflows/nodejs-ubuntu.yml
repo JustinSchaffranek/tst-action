@@ -1,4 +1,4 @@
-name: Node CI
+name: Ubuntu - Node CI
 
 on: [push]
 
@@ -23,7 +23,7 @@ jobs:
       run: |
         cd tst/frontend
         npm install
-        npm run build
+        ng build --prod
     - name: build backend
       run: |
         cd tst/backend
