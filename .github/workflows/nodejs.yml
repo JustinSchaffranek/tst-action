@@ -28,6 +28,17 @@ jobs:
         cd tst/frontend
         npm install
         npm run build
+    - name: check paths
+      run: |
+        pwd
+        ls
+        cd ./tst/frontend/
+        pwd
+        ls
+        cd dist
+        ls
+        cd frontend
+        ls        
     - name: move artifacts
       run: move ./tst/frontend/dist/frontend ./dist
     - name: check move
