@@ -25,22 +25,21 @@ jobs:
         npm install
         npm install -g @angular/cli
         npm run build
+        echo "--> output"
+        echo "--> ls: look for dist"
+        ls
+        echo "Move!"
+        move ./dist/* ./../../dist
     - name: check paths
       run: |
-        cd dist
-        pwd
-        ls
-        cd ..
-        pwd
-        ls
-        cd ./tst/frontend/
+        cd tst/frontend/
+        echo "--> tst/frontend"
         pwd
         ls
         cd dist
-        ls
-        cd frontend
+        echo "--> tst/frontend/dist"
         pwd
-        ls        
+        ls    
     - name: move artifacts
       run: echo "cp ./tst/frontend/dist/frontend/* ./dist"
     - name: check move
