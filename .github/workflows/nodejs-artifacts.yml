@@ -1,0 +1,30 @@
+name: with Artifacts
+
+on: [push]
+
+jobs:
+  buildBackend:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        node-version: [11.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: add dist directory
+      run: mkdir dist  
+    - name: build backend
+      run: |
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist        
+    - name: check paths
+      run: |
+        cd dist
+        pwd
+        ls
+    - uses: actions/upload-artifact@master
+      with:
+        name: backend
+        path: dist
