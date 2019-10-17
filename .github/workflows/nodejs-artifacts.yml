@@ -59,17 +59,19 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: frontend
-    - run: |
-        ls
-        cd frontend
-        ls
     - uses: actions/download-artifact@master
       with:
         name: backend
-    - run: |
-        ls
-        cd backend
-        ls
+    - name: prepare dist folder    
+      run: |
+        mkdir dist
+        move ./backend/* ./dist
+        echo "--> move backend:"
+        ls ./dist
+        echo "--> move frontend:"
+        move ./frontend/* ./dist
+        ls ./dist
+      
     - name: deploy to azure
       run: |
         mkdir test
