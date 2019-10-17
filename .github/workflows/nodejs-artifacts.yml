@@ -53,10 +53,10 @@ jobs:
 
   DeployToAzure:
     runs-on: windows-latest
+    needs: [buildFrontend, buildBackend]
 
     steps:
     - uses: actions/checkout@master
-    - uses: actions/download-artifact@master
       with:
         name: frontend
     - run: ls
