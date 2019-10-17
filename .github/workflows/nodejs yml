@@ -25,11 +25,10 @@ jobs:
         echo "--> run npm build"
         npm install
         npm run build
-        echo "--> output"
-        echo "--> ls: look for dist"
-        ls
-        echo "Move!"
-        move ./dist/* ./../../dist
+    - name: build backend
+      run: |
+        cd tst/backend
+        dotnet publish -c Release -o ../../dist        
     - name: check paths
       run: |
         cd tst/frontend/
