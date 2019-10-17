@@ -84,5 +84,7 @@ jobs:
       
     - name: deploy to azure
       run: |
+        $secret='${{ secrets.SP_Password }}'
+        echo "secret: "$secret
         dotnet tool install --global azzipgo --version 0.3.4
-        azzipgo deploy-in-place -d deploy/ -u dcc08599-210c-4495-94d0-dfeb1a8d1d88 -p ${{ secrets.SP_Password }} -t gksullust.com -s c23fb836-26ae-44c7-ba0b-c173ceaeb6e8 -g tst-ghactions-weu-rg-0 --site testghaction --target-slot production
+        azzipgo deploy-in-place -d deploy/ -u dcc08599-210c-4495-94d0-dfeb1a8d1d88 -p $secret -t gksullust.com -s c23fb836-26ae-44c7-ba0b-c173ceaeb6e8 -g tst-ghactions-weu-rg-0 --site testghaction --target-slot production
